@@ -11,7 +11,7 @@ install_requires = [
 setup(
     name='svglabel',
     version='0.0.1',
-    description='',
+    description='Scripts for converting annotation files between svg and json',
     author='Affonso-Gui',
     author_email='affonso@jsk.imi.i.u-tokyo.ac.jp',
     url='https://github.com/Affonso-Gui/svglabel',
