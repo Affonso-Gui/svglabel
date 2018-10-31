@@ -18,6 +18,7 @@ setup(
     license='MIT License',
     packages=find_packages(),
     zip_safe=False,
+    scripts=['json2svg.py', 'svg2json.py'],
     setup_requires=setup_requires,
     install_requires=install_requires,
 )
