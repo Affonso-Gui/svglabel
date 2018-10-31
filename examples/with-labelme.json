@@ -169,7 +169,7 @@
     0, 
     128
   ], 
-  "imagePath": "examples/image.jpg", 
+  "imagePath": "image.jpg",
   "flags": {}, 
   "fillColor": [
     255, 
