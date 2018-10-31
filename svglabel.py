@@ -36,7 +36,7 @@ def make_shape():
         fill_color = None,
     )
 
-def svg2json(svgfile, imfile, outfile=None, segments=5):
+def svg2json(svgfile, imfile, outfile=None, segments=10):
     paths, attributes = svg2paths(svgfile)
     obj = make_obj(imfile)
 

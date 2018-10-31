@@ -8,7 +8,7 @@ if __name__ == '__main__':
     parser.add_argument('svgfile')
     parser.add_argument('imfile')
     parser.add_argument('-o', '--outfile')
-    parser.add_argument('--segments', type=int, default=5)
+    parser.add_argument('-s', '--segments', type=int, default=10)
     args = parser.parse_args()
 
     svg2json(args.svgfile,
