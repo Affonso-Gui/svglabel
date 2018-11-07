@@ -36,11 +36,18 @@ def make_shape():
         fill_color = None,
     )
 
-def svg2json(svgfile, imfile, outfile=None, segments=10):
+def svg2json(svgfile, imfile, outfile=None, labelfile=None, segments=10):
     paths, attributes = svg.svg2paths(svgfile)
     obj = make_obj(imfile)
 
+    if labelfile: label_lst = [l.rstrip('\n') for l in open(labelfile)]
+
     for path, attr in zip(paths,attributes):
+        if labelfile:
+            label_name = attr['id'].split()[0]
+            if label_name not in label_lst:
+                raise Exception('No such label: {}'.format(label_name))
+
         shape = make_shape()
         shape['points'] = get_points(path,segments)
         shape['label'] = attr['id']

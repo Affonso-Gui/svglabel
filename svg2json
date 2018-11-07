@@ -14,6 +14,7 @@ if __name__ == '__main__':
     parser.add_argument('svgfile')
     parser.add_argument('imfile')
     parser.add_argument('-o', '--outfile')
+    parser.add_argument('-l', '--labelfile')
     parser.add_argument('-s', '--segments', type=positive_int, default=10,
                         help='Number of line segments inserted between points.')
     args = parser.parse_args()
@@ -21,5 +22,6 @@ if __name__ == '__main__':
     svg2json(args.svgfile,
              args.imfile,
              outfile=args.outfile,
+             labelfile=args.labelfile,
              segments=args.segments,
     )
