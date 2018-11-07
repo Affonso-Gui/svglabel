@@ -1,5 +1,11 @@
 #!/usr/bin/python
 
+def positive_int(val):
+    i = int(val)
+    if i <= 0:
+         raise argparse.ArgumentTypeError('invalid positive_int value: {}'.format(val))
+    return i
+
 import argparse
 from svglabel import svg2json
 
@@ -8,7 +14,8 @@ if __name__ == '__main__':
     parser.add_argument('svgfile')
     parser.add_argument('imfile')
     parser.add_argument('-o', '--outfile')
-    parser.add_argument('-s', '--segments', type=int, default=10)
+    parser.add_argument('-s', '--segments', type=positive_int, default=10,
+                        help='Number of line segments inserted between points.')
     args = parser.parse_args()
 
     svg2json(args.svgfile,
