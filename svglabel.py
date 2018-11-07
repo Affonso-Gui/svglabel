@@ -2,7 +2,7 @@ import base64
 import json
 import os.path
 from PIL import Image
-from svgpathtools import svg2paths, wsvg, Path, Line
+import svgpathtools as svg
 
 
 # svg2json
@@ -37,7 +37,7 @@ def make_shape():
     )
 
 def svg2json(svgfile, imfile, outfile=None, segments=10):
-    paths, attributes = svg2paths(svgfile)
+    paths, attributes = svg.svg2paths(svgfile)
     obj = make_obj(imfile)
 
     for path, attr in zip(paths,attributes):
@@ -59,10 +59,10 @@ def get_path(points):
     points = points[1:] + points[:1]
     for p in points:
         end = complex(*p)
-        line = Line(start, end)
+        line = svg.Line(start, end)
         acc.append(line)
         start = end
-    return Path(*acc)
+    return svg.Path(*acc)
 
 def make_attributes(id):
     return {
@@ -97,9 +97,10 @@ def json2svg(jsonfile, outfile=None):
     paths.reverse()
     attributes.reverse()
     outfile = outfile or os.path.splitext(jsonfile)[0] + '.svg'
-    wsvg(paths=paths,
-         filename=outfile,
-         attributes=attributes,
-         svg_attributes=svg_attributes,
+    svg.wsvg(
+        paths=paths,
+        filename=outfile,
+        attributes=attributes,
+        svg_attributes=svg_attributes,
     )
     print 'Wrote to {}'.format(outfile)
