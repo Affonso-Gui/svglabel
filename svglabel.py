@@ -9,11 +9,11 @@ from svgpathtools import svg2paths, wsvg, Path, Line
 
 def get_points(path, seg):
     acc = []
-    l = seg*len(path)
-    for i in range(l):
-        val = float(i) / l
-        point = path.point(val)
-        acc.append([point.real, point.imag])
+    for p in path:
+        for i in range(seg):
+            val = float(i) / seg
+            point = p.point(val)
+            acc.append([point.real, point.imag])
     return acc
 
 def make_obj(filename):
