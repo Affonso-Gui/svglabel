@@ -49,7 +49,7 @@ def svg2json(svgfile, imfile, outfile=None, segments=5):
     obj['shapes'].reverse()
     outfile = outfile or os.path.splitext(svgfile)[0] + '.json'
     with open(outfile,'w') as f: json.dump(obj,f,indent=True)
-    print 'Wrote to {}'.format(outfile)
+    print('Wrote to {}'.format(outfile))
 
 # json2svg
 
@@ -102,4 +102,4 @@ def json2svg(jsonfile, outfile=None):
          attributes=attributes,
          svg_attributes=svg_attributes,
     )
-    print 'Wrote to {}'.format(outfile)
+    print('Wrote to {}'.format(outfile))
