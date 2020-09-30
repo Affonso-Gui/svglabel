@@ -9,11 +9,21 @@ import svgpathtools as svg
 
 def get_points(path, seg):
     acc = []
+    close_shape = None
+    last_end = None
     for p in path:
+        if last_end and p.start != last_end:
+            # close any open shapes before proceeding to the next point
+            if close_shape:
+                acc.append(close_shape)
+            else:
+                close_shape = acc[-1]
+        # divide into the desired amount of segments and add the points
         for i in range(seg):
             val = float(i) / seg
             point = p.point(val)
             acc.append([point.real, point.imag])
+        last_end = p.end
     return acc
 
 def make_obj(filename):
