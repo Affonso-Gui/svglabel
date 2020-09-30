@@ -4,7 +4,8 @@ import argparse
 from svglabel import json2svg
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('jsonfile')
     parser.add_argument('-o', '--outfile')
     args = parser.parse_args()

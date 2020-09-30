@@ -10,7 +10,8 @@ import argparse
 from svglabel import svg2json
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('svgfile')
     parser.add_argument('imfile')
     parser.add_argument('-o', '--outfile')
