@@ -12,18 +12,24 @@ def get_points(path, seg):
     close_shape = None
     last_end = None
     for p in path:
+        # close any open shapes before proceeding to the next point
         if last_end and p.start != last_end:
-            # close any open shapes before proceeding to the next point
+            # quickfix: labelme not recognizing exactly same points?
+            acc.append([last_end.real, last_end.imag + 0.001])
             if close_shape:
                 acc.append(close_shape)
             else:
                 close_shape = acc[-1]
-        # divide into the desired amount of segments and add the points
+
+        # add the point
+        acc.append([p.start.real, p.start.imag])
+        # add any additional segment points
         for i in range(seg):
-            val = float(i) / seg
+            val = float(i) / (seg + 1)
             point = p.point(val)
             acc.append([point.real, point.imag])
         last_end = p.end
+    acc.append([last_end.real, last_end.imag + 0.001])
     return acc
 
 def make_obj(filename):

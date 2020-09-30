@@ -2,7 +2,7 @@
 
 def positive_int(val):
     i = int(val)
-    if i <= 0:
+    if i < 0:
          raise argparse.ArgumentTypeError('invalid positive_int value: {}'.format(val))
     return i
 
@@ -17,7 +17,7 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--outfile')
     parser.add_argument('-l', '--labelfile')
     parser.add_argument('-s', '--segments', type=positive_int, default=10,
-                        help='Number of line segments inserted between points.')
+                        help='Number of additional line segments inserted between points.')
     args = parser.parse_args()
 
     svg2json(args.svgfile,
