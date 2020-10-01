@@ -15,6 +15,7 @@ def get_points(path, seg):
         # close any open shapes before proceeding to the next point
         if last_end and p.start != last_end:
             # quickfix: labelme not recognizing exactly same points?
+            # https://github.com/wkentaro/labelme/issues/782
             acc.append([last_end.real, last_end.imag + 0.001])
             if close_shape:
                 acc.append(close_shape)
